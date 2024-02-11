@@ -2,7 +2,6 @@ package de.aittr.g_27_shop_project.domain.jpa;
 
 import de.aittr.g_27_shop_project.domain.interfaces.Product;
 import jakarta.persistence.*;
-
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
@@ -14,7 +13,8 @@ import org.slf4j.LoggerFactory;
 @Table(name = "product")
 public class JpaProduct implements Product {
 
-  private static final Logger logger = LoggerFactory.getLogger(JpaProduct.class);
+  private static Logger logger = LoggerFactory.getLogger(JpaProduct.class);
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")

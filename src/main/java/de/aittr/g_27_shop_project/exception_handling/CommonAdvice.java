@@ -1,10 +1,11 @@
 package de.aittr.g_27_shop_project.exception_handling;
 
-import de.aittr.g_27_shop_project.exception_handling.exceptions.DontIdException;
-import de.aittr.g_27_shop_project.exception_handling.exceptions.DontNameException;
+import de.aittr.g_27_shop_project.exception_handling.exceptions.ProductIdNotFoundException;
+import de.aittr.g_27_shop_project.exception_handling.exceptions.ProductNameNotFoundException;
 import de.aittr.g_27_shop_project.exception_handling.exceptions.FourthTestException;
-import de.aittr.g_27_shop_project.exception_handling.exceptions.NullException;
+import de.aittr.g_27_shop_project.exception_handling.exceptions.IncorrectProductPriceException;
 import de.aittr.g_27_shop_project.exception_handling.exceptions.PositiveException;
+import de.aittr.g_27_shop_project.exception_handling.exceptions.ProductNotActiveException;
 import de.aittr.g_27_shop_project.exception_handling.exceptions.ThirdTestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,20 +32,20 @@ public class CommonAdvice {
       return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-  @ExceptionHandler(NullException.class)
-  public ResponseEntity<Response> handleException(NullException e) {
+  @ExceptionHandler(IncorrectProductPriceException.class)
+  public ResponseEntity<Response> handleException(IncorrectProductPriceException e) {
     Response response = new Response(e.getMessage());
     return new ResponseEntity<>(response, HttpStatus.NOT_ACCEPTABLE);
   }
 
-  @ExceptionHandler(DontIdException.class)
-  public ResponseEntity<Response> handleException(DontIdException e) {
+  @ExceptionHandler(ProductIdNotFoundException.class)
+  public ResponseEntity<Response> handleException(ProductIdNotFoundException e) {
     Response response = new Response(e.getMessage());
     return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
   }
 
-  @ExceptionHandler(DontNameException.class)
-  public ResponseEntity<Response> handleException(DontNameException e) {
+  @ExceptionHandler(ProductNameNotFoundException.class)
+  public ResponseEntity<Response> handleException(ProductNameNotFoundException e) {
     Response response = new Response(e.getMessage());
     return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
   }
@@ -53,5 +54,11 @@ public class CommonAdvice {
   public ResponseEntity<Response> handleException(PositiveException e) {
     Response response = new Response(e.getMessage());
     return new ResponseEntity<>(response, HttpStatus.OK);
+  }
+
+  @ExceptionHandler(ProductNotActiveException.class)
+  public ResponseEntity<Response> handleException(ProductNotActiveException e) {
+    Response response = new Response(e.getMessage());
+    return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
   }
 }

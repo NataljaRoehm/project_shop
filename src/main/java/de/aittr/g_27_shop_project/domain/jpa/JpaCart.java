@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 @Entity
 @Table(name = "cart")
 public class JpaCart implements Cart {
-  private static final Logger logger = LoggerFactory.getLogger(JpaCart.class);
+  private static  Logger logger = LoggerFactory.getLogger(JpaCart.class);
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,16 +32,16 @@ public class JpaCart implements Cart {
   )
   private List<JpaProduct> products;
 
-  public JpaCart() {
-    logger.info(String.format("Создан новый экземпляр JpaCart с id: {%d}", this.id));
-  }
-
   public JpaCart(int id, JpaCustomer customer, List<JpaProduct> products) {
     this.id = id;
     this.customer = customer;
     this.products = products;
     logger.info(String.format("Создан новый экземпляр JpaCart с id: {%d},"
-        + " customer: {%d}, products: {%d}", id, customer, products));
+        + " customer: {}, products: {}", id, customer, products));
+  }
+
+  public JpaCart() {
+
   }
 
   @Override

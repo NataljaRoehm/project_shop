@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface JpaProductRepository extends JpaRepository<JpaProduct, Integer> {
 
   JpaProduct findByName(String name);
-
   int countAllByIsActiveIsTrue();
+
 }

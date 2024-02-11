@@ -22,7 +22,6 @@ public class ProductDto {
     this.name = name;
   }
 
-
   public int getId() {
     return id;
   }

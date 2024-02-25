@@ -135,28 +135,27 @@ public class ScheduleExecutor {
 //        instant);
 //  }
 
-//Реализовать вывод в консоль каждые 30 секунд списка последних пяти выполненных задач.
+  //Реализовать вывод в консоль каждые 30 секунд списка последних пяти выполненных задач.
 // Время выполнения предыдущей задачи не должно влиять на старт следующей.
 // Создавать новую задачу и логировать ничего не нужно.
-   public static void lastFiveTask(Task task) {
-    TaskScheduler fiveTask = new DefaultManagedTaskScheduler();
-    int count = 0;
-    while (count<5){
-      Instant instant = Instant.now().plusSeconds(30);
-      fiveTask.schedule(()-> logger.info(task.getDescription()),
-          instant);
-      count++;
+  @Scheduled(fixedRate = 30000)
+  public void lastFiveTask() {
+    List<Task> tasks = taskService.getLastTask(5);
+    System.out.println("Последние пять задач: ");
+    for (Task task : tasks) {
+      System.out.println(task);
     }
   }
+
   //Реализовать вывод в консоль последнего добавленного в БД товара.
   // Вывод должен производиться в 15 и 45 секунд каждой минуты.
   // Задача должна быть сохранена в БД.
   // Вывод в консоль должен быть осуществлён через логирование поля description созданной задачи.
   // Пример значения поля description -
   // "Последний добавленный в БД продукт - Банан".
-  public static void scheduleTaskSave(Task task) {
-    TaskScheduler scheduler = new DefaultManagedTaskScheduler();
-    scheduler.schedule(() -> logger.info(task.getDescription()),
-        new CronTrigger("15,45 * * * * *"));
-  }
+  @Scheduled(cron = "15,45 * * * * *")
+   public void lastAddProduct() {
+       taskService.createTask("Последний добавленный продукт: " +
+                productService.getLastProduct());
+    }
 }

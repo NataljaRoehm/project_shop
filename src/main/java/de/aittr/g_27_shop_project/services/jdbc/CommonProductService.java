@@ -1,4 +1,5 @@
 package de.aittr.g_27_shop_project.services.jdbc;
+
 import de.aittr.g_27_shop_project.domain.dto.ProductDto;
 import de.aittr.g_27_shop_project.domain.interfaces.Product;
 import de.aittr.g_27_shop_project.repositories.interfaces.ProductRepository;
@@ -6,9 +7,8 @@ import de.aittr.g_27_shop_project.services.interfaces.ProductService;
 import de.aittr.g_27_shop_project.services.mapping.ProductMappingService;
 import java.util.List;
 import java.util.NoSuchElementException;
-import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class CommonProductService implements ProductService {
 
   private ProductRepository repository;

@@ -1,6 +1,5 @@
 package de.aittr.g_27_shop_project.domain.interfaces;
 
-import de.aittr.g_27_shop_project.domain.jpa.JpaProduct;
 
 public interface Product {
 

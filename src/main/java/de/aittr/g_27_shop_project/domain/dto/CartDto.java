@@ -1,13 +1,13 @@
 package de.aittr.g_27_shop_project.domain.dto;
 
-import  de.aittr.g_27_shop_project.domain.jpa.JpaProduct;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class CartDto {
 
   private int id;
-  private List<ProductDto> products;
+  private List<ProductDto> products = new ArrayList<>();
 
   public CartDto(int id, List<ProductDto> products) {
     this.id = id;
@@ -20,6 +20,14 @@ public class CartDto {
 
   public List<ProductDto> getProducts() {
     return products;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setProducts(List<ProductDto> products) {
+    this.products = products;
   }
 
   @Override

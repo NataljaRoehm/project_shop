@@ -16,12 +16,6 @@ public class CommonProduct implements Product {
     this.isActive = true;
   }
 
-  public CommonProduct(String name, double price) {
-    this.name = name;
-    this.price = price;
-    this.isActive = true;
-  }
-
   public CommonProduct(int id, String name, double price) {
     this.id = id;
     this.name = name;

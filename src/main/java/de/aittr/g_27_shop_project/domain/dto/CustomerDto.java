@@ -10,6 +10,16 @@ public class CustomerDto {
   private String email;
   private CartDto cart;
 
+  public CustomerDto() {
+  }
+
+  public CustomerDto(int id, String name, int age, String email) {
+    this.id = id;
+    this.name = name;
+    this.age = age;
+    this.email = email;
+  }
+
   public CustomerDto(int id, String name, int age, String email, CartDto cart) {
     this.id = id;
     this.name = name;
@@ -37,6 +47,27 @@ public class CustomerDto {
   public CartDto getCart() {
     return cart;
   }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setCart(CartDto cart) {
+    this.cart = cart;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

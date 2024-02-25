@@ -4,17 +4,21 @@ public interface Customer {
 
   int getId();
 
-  boolean isActive();
-
-  String getName();
-
-  Cart getCart();
-
   void setId(int id);
 
-  void setCart(Cart cart);
+  boolean isActive();
 
   void setActive(boolean isActive);
 
+  String getName();
+
   void setName(String name);
+
+  Cart getCart();
+
+  void setCart(Cart cart);
+
+  int getAge();
+
+  String getEmail();
 }

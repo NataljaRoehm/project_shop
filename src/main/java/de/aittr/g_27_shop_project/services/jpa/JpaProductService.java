@@ -10,11 +10,9 @@ import de.aittr.g_27_shop_project.exception_handling.exceptions.IncorrectProduct
 import de.aittr.g_27_shop_project.exception_handling.exceptions.ProductNotActiveException;
 import de.aittr.g_27_shop_project.exception_handling.exceptions.ThirdTestException;
 import de.aittr.g_27_shop_project.repositories.jpa.JpaProductRepository;
-import de.aittr.g_27_shop_project.scheduling.ScheduleExecutor;
 import de.aittr.g_27_shop_project.services.interfaces.ProductService;
 import de.aittr.g_27_shop_project.services.mapping.ProductMappingService;
 import jakarta.transaction.Transactional;
-import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -35,9 +33,7 @@ public class JpaProductService implements ProductService {
 
   @Override
   public ProductDto save(ProductDto product) {
-    Task task = new Task("Последний добавленный в БД продукт: " + product);
-    ScheduleExecutor.scheduleTaskSave(task);
-    try {
+       try {
       JpaProduct entity = mappingService.mapDtoToEntity(product);
       entity.setId(0);
       entity = repository.save(entity);
@@ -51,8 +47,7 @@ public class JpaProductService implements ProductService {
   public List<ProductDto> getAllActiveProducts() {
     Task task = new Task("Method getAllActiveProducts called");
     //ScheduleExecutor.scheduleTaskExecution(task);
-    ScheduleExecutor.lastFiveTask(task);
-    return repository.findAll()
+        return repository.findAll()
         .stream()
         .filter(x -> x.isActive())
         .map(x -> mappingService.mapEntityToDto(x))
@@ -137,5 +132,9 @@ public class JpaProductService implements ProductService {
     return allProducts.stream()
         .mapToDouble(x -> x.getPrice())
         .average().getAsDouble();
+  }
+
+  public JpaProduct getLastProduct() {
+    return repository.getLastProduct();
   }
 }

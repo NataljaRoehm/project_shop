@@ -116,16 +116,30 @@ public class CommonCustomerRepository implements CustomerRepository {
 
   @Override
   public Customer getById(int id) {
+    try (Connection connection = getConnection()) {
+
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
     return null;
   }
 
   @Override
   public Customer update(Customer customer) {
+    try (Connection connection = getConnection()) {
+
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
     return null;
   }
 
   @Override
   public void deleteById(int id) {
+    try (Connection connection = getConnection()) {
 
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 }

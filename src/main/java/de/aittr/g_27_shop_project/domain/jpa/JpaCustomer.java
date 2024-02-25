@@ -21,12 +21,13 @@ public class JpaCustomer implements Customer {
   private int id;
 
   @Column(name = "name")
-  @Pattern(regexp = "[A-Z][a-z]{3,}")
-  private String name;
+  @Pattern(regexp = "[A-Z][a-z]{3,}",
+  message = "Название пароля с большой буквы и содержит минимум 3 маленькие")
+  private String  name;
 
   @Column(name = "age")
-  @Min(16)
-  @Max(80)
+  @Min(value = 16, message = "Покупатель должен быть не младше 16 лет!")
+  @Max(value = 80,message = "Покупатель должен быть не старше 80 лет!")
   private int age;
 
   @Column(name = "email")
@@ -42,6 +43,12 @@ public class JpaCustomer implements Customer {
 
   public JpaCustomer() {
     logger.info("Вызван конструктор JpaCustomer без аргументов");
+  }
+
+  public JpaCustomer(String name, int age, String email) {
+    this.name = name;
+    this.age = age;
+    this.email = email;
   }
 
   public JpaCustomer(String name, boolean isActive, int age, String email) {

@@ -140,7 +140,7 @@ public class ScheduleExecutor {
 // Создавать новую задачу и логировать ничего не нужно.
   @Scheduled(fixedRate = 30000)
   public void lastFiveTask() {
-    List<Task> tasks = taskService.getLastTask(5);
+    List<Task> tasks = taskService.getLastTask();
     System.out.println("Последние пять задач: ");
     for (Task task : tasks) {
       System.out.println(task);

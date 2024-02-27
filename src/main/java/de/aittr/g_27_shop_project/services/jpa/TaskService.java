@@ -23,7 +23,7 @@ public class TaskService {
     repository.save(task);
   }
 
-  public List<Task> getLastTask(int count){
+  public List<Task> getLastTask(){
     return repository.lastFiveTask();
   }
 }
